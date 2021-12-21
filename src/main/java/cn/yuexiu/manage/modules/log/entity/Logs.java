@@ -35,6 +35,7 @@ public class Logs implements Serializable {
     private String logId;
 
     @ApiModelProperty("日志调用状态 1成功 2失败")
+    @NotBlank(message = "日志调用状态不能为null",groups = {Save.class})
     private String status;
 
     @ApiModelProperty("日志描述")

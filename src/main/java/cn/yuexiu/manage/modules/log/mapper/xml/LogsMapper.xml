@@ -36,6 +36,7 @@
         <if test="param!=null and param!=''">
             and (dl.server_cn like #{param} or dl.server_en like #{param} or dl.server_api like #{param})
         </if>
+        order by dl.create_time desc
     </select>
 
     <select id="getAll" resultType="cn.yuexiu.manage.modules.log.vo.LogsModel">

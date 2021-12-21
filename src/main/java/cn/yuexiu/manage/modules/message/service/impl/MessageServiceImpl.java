@@ -267,13 +267,15 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
                 log.info("result == "+result.toString());
                 if(!StringUtil.isEmpty(result)){
                     JSONObject object =  JSONObject.parseObject(result);
-                    if(!"200".equals(object.getInteger("code"))){
+                    if(!"200".equals(object.getString("code"))){
                         throw new JeecgBootException(object.getString("message"));
                     }
                 }
             } catch (IOException e) {
+                log.info(e.toString());
                 throw new JeecgBootException("获取数据安全api响应失败", e);
             } catch (Exception e) {
+                log.info(e.toString());
                 throw new JeecgBootException("执行数据安全api失败", e);
             }
         }
