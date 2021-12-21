@@ -34,4 +34,4 @@ spec:
       - name: maven
         image: manage-console:${CICD_EXECUTION_SEQUENCE}
         ports:
-        - containerPort: 8084
+        - containerPort: 30003
