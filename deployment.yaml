@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: format-service
+spec:
+  selector:
+    app: format
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 33002
+      targetPort: 32002
+      nodePort: 32002
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: format
+  labels:
+    app: format
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: format
+  template:
+    metadata:
+      labels:
+        app: format
+    spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
+      containers:
+      - name: maven
+        image: format:${CICD_EXECUTION_SEQUENCE}
+        ports:
+        - containerPort: 9002
