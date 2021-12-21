@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: format-service
+  name: manage-service
 spec:
   selector:
-    app: format
+    app: manage
   type: NodePort
   ports:
     - protocol: TCP
@@ -15,23 +15,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: format
+  name: manage
+  namespace: deploy
   labels:
-    app: format
+    app: manage
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: format
+      app: manage
   template:
     metadata:
       labels:
-        app: format
+        app: manage
     spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
       containers:
       - name: maven
-        image: format:${CICD_EXECUTION_SEQUENCE}
+        image: manage-console:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 8084
