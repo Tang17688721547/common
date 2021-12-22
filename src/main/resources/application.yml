@@ -1,0 +1,33 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
+  application:
+    name: MANANE_CONSOLE
+swagger:
+  production: false
+  basic:
+    enable: false
+    username: jeecg
+    password: jeecg1314
+# 第三方登录
+dfjinxin:
+  redis:
+    open: false
+  shiro:
+    redis: false
+  # APP模块，是通过jwt认证的，如果要使用APP模块，则需要修改【加密秘钥】
+  jwt:
+    # 加密秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5[www.seaboxdata.com]
+    # token有效时长，7天，单位秒
+    expire: 604800
+    header: token
+seaboxdata:
+  auth:
+    hostname:
+#是否对接数研统一认证
+auth:
+  config:
+    need: true

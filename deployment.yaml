@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: manage-service
+spec:
+  selector:
+    app: manage
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 30004
+      targetPort: 8084
+      nodePort: 30004
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manage
+  labels:
+    app: manage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manage
+  template:
+    metadata:
+      labels:
+        app: manage
+    spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
+      containers:
+      - name: maven
+        image: 	127.0.0.1:34841/manage-console:${CICD_EXECUTION_SEQUENCE}
+        ports:
+        - containerPort: 8084

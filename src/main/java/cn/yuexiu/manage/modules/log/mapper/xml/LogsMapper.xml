@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuexiu.manage.modules.log.mapper.LogsMapper">
+
+
+    <select id="getList" resultType="cn.yuexiu.manage.modules.log.vo.LogsModel">
+        select dl.*,dc.catalog_name
+        from dm_logs dl
+                     left join dm_catalog dc on dl.sys_code = dc.sys_code
+        where 1 = 1
+        <if test="logType!=null and logType!=''">
+          and  dl.log_type = #{logType}
+        </if>
+
+        <if test="userId!=null and userId!=''">
+            and  dl.user_id = #{userId}
+        </if>
+
+        <if test="status!=null and status!=''">
+            and dl.status = #{status}
+        </if>
+
+        <if test="catalogCode!=null and catalogCode!=''">
+            and dl.catalog_code like #{catalogCode}
+        </if>
+
+        <if test="startTime!=null and startTime!=''">
+            and  dl.create_time &gt;= #{startTime}
+        </if>
+
+        <if test="endTime!=null and endTime!=''">
+            and dl.create_time &lt;= #{endTime}
+
+        </if>
+
+        <if test="param!=null and param!=''">
+            and (dl.server_cn like #{param} or dl.server_en like #{param} or dl.server_api like #{param})
+        </if>
+        order by dl.create_time desc
+    </select>
+
+    <select id="getAll" resultType="cn.yuexiu.manage.modules.log.vo.LogsModel">
+        select dl.*,dc.catalog_name
+        from dm_logs dl
+        left join dm_catalog dc on dl.sys_code = dc.sys_code
+        where 1 = 1
+        <if test="logType!=null and logType!=''">
+            and  dl.log_type = #{logType}
+        </if>
+
+        <if test="userId!=null and userId!=''">
+            and  dl.user_id = #{userId}
+        </if>
+
+        <if test="status!=null and status!=''">
+            and dl.status = #{status}
+        </if>
+
+        <if test="catalogCode!=null and catalogCode!=''">
+            and dl.catalog_code like #{catalogCode}
+        </if>
+
+        <if test="startTime!=null and startTime!=''">
+            and  dl.create_time &gt;= #{startTime}
+        </if>
+
+        <if test="endTime!=null and endTime!=''">
+            and dl.create_time &lt;= #{endTime}
+        </if>
+
+        <if test="param!=null and param!=''">
+            and (dl.server_cn like #{param} or dl.server_en like #{param} or dl.server_api like #{param})
+        </if>
+    </select>
+</mapper>
