@@ -332,12 +332,6 @@
 			<artifactId>httpcore</artifactId>
 			<version>4.4.14</version>
 		</dependency>
-		<dependency>
-			<groupId>cn.gateway</groupId>
-			<artifactId>gateway</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-
 
 	</dependencies>
 
