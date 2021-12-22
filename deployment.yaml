@@ -33,5 +33,20 @@ spec:
       containers:
       - name: maven
         image: 	127.0.0.1:34841/manage-console:${CICD_EXECUTION_SEQUENCE}
+        volumeMounts:
+          - mountPath: /data/jar
+            name: datax
+          - mountPath: /etc/timezone
+            name: timezone
+            readOnly: true
         ports:
         - containerPort: 8084
+      volumes:
+        - hostPath:
+            path: /data/jar/comm
+            type: ""
+          name: datax
+        - hostPath:
+            path: /etc/timezone
+            type: ""
+          name: timezone
