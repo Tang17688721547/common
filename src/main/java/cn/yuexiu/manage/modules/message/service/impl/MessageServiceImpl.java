@@ -15,6 +15,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dfjinxin.commons.auth.utlis.OnlineUserUtils;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import cn.yuexiu.manage.modules.log.service.LogsService;
@@ -266,8 +267,11 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
                 String result = HttpUtils.read(response.getEntity().getContent(), "utf-8");
                 log.info("result == "+result.toString());
                 if(!StringUtil.isEmpty(result)){
+
                     JSONObject object =  JSONObject.parseObject(result);
-                    if(!"200".equals(object.getString("code"))){
+                    //object.getString("code")
+                    Integer code = object.getInteger("code");
+                    if(200!=code){
                         throw new JeecgBootException(object.getString("message"));
                     }
                 }
