@@ -123,7 +123,6 @@ mybatis-plus:
     #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     # 返回类型为Map,显示null对应的字段
     call-setters-on-nulls: true
-#jeecg专用配置
 #Mybatis输出sql日志
 logging:
   level:
