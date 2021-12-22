@@ -28,7 +28,7 @@ spring:
     # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-wz9wi1xu119polm9x.mysql.rds.aliyuncs.com:3306/manage_console?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false
+    url: jdbc:mysql://rm-wz9wi1xu119polm9x.mysql.rds.aliyuncs.com:3306/commdb?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false
     username: sjzcgl_cx_prod
     password: 9WKvx!SurMrQnA1m
     druid:
